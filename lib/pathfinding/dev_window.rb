@@ -1,6 +1,8 @@
 class DevWindow < Gosu::Window
+  WIDTH = HEIGHT = 640 
+
   def initialize
-    super(640, 640, false)
+    super(WIDTH, HEIGHT, false)
     self.caption = "Dev Window"
   end
   
