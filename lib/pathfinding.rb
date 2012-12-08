@@ -7,5 +7,11 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 require "pathfinding/display_window"
 
-display = DisplayWindow.new
-display.show
+if ARGV.include? "-d"
+  require "pathfinding/dev_window"
+  window = DevWindow.new
+else
+  window = DisplayWindow.new
+end
+
+window.show
