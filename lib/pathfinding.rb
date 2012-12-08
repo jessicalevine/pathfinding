@@ -1,4 +1,5 @@
 # Require external files
+require "gosu"
 
 # Require internal files
 libdir = File.dirname(__FILE__)
