@@ -6,7 +6,7 @@ class DevWindow < Gosu::Window
     super(WIDTH, HEIGHT, false)
     self.caption = "Dev Window"
 
-    @tileset = Tileset.new(self)
+    @tileset = Tileset.new(self, "assets/dungeon_crawl_tiles.png", TILESIZE, TILESIZE, {})
     @tile = 0
 
     @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
@@ -28,7 +28,7 @@ class DevWindow < Gosu::Window
   end
   
   def draw
-    @tileset.draw(@tile, WIDTH / 2 - TILESIZE / 2, HEIGHT / 2 - TILESIZE / 2, 0)
+    @tileset.draw(@tile, WIDTH / TILESIZE / 2, HEIGHT / TILESIZE / 2, 0)
     @font.draw("Tile: #{@tile}", 10, 10, 1, 1.0, 1.0, 0xffffff00)
   end
 end
