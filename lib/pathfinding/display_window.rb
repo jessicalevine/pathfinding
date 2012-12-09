@@ -5,7 +5,7 @@ class DisplayWindow < Gosu::Window
     super(WIDTH, HEIGHT, false)
     self.caption = "Pathfinding Algorithm Display"
 
-    key = { "W" => 1142, "F" => 1156 }
+    key = { "A" => 132, "D" => 193, "W" => 1142, "F" => 1156 }
     @tileset = Tileset.new(self, "assets/dungeon_crawl_tiles.png", 32, 32, key)
 
     @map = Map.from_file("assets/maps/example20square", @tileset)
