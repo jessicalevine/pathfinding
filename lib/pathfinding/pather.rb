@@ -1,7 +1,7 @@
 class Pather
   attr_accessor :finished, :path, :disp_scores
   
-  def initialize(map, start, finish, tileset)
+  def initialize(map, start, finish, tileset, disp_scores = false)
     @map = map
     @start = start
     @finish = finish
@@ -11,7 +11,7 @@ class Pather
     @current = nil
     @finished = false
     @path = []
-    @disp_scores = false
+    @disp_scores = disp_scores
   end
 
   def step

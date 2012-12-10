@@ -15,6 +15,7 @@ class DisplayWindow < Gosu::Window
     @counter = 0
     @update_frame = 9
     @paused = false
+    @disp_scores = false
 
     reset
   end
@@ -23,7 +24,7 @@ class DisplayWindow < Gosu::Window
     @map = Map.from_file(@map_names.first, @tileset)
     @units = [ Unit.new("D", @map.rand_walkable_loc, 4, @tileset), 
                Unit.new("A", @map.rand_walkable_loc, 4, @tileset) ]
-    @pather = Pather.new(@map, @units.first.loc, @units.last.loc, @tileset)
+    @pather = Pather.new(@map, @units.first.loc, @units.last.loc, @tileset, @disp_scores)
   end
 
   def update
@@ -53,7 +54,8 @@ class DisplayWindow < Gosu::Window
     elsif id == Gosu::Window.char_to_button_id("w")
       @units.first.walk(@pather.path) if @pather.finished
     elsif id == Gosu::Window.char_to_button_id("d")
-      @pather.disp_scores = !@pather.disp_scores
+      @disp_scores = !@disp_scores
+      @pather.disp_scores = @disp_scores
     elsif id == Gosu::Window.char_to_button_id("m")
       @map_names.unshift(@map_names.pop)
       reset
