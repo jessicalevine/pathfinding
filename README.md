@@ -17,6 +17,7 @@ Aditionally, these controls are available:
 * Press `p` to pause the pathfinding
 * Press `r` to reset with new random locations
 * Press `w` to walk the dragon along a finalized (golden) path
+* Press `d` to display the manhattan estimates of queued spaces
 * Press `1` through `9` to adjust the animation speed
   * 1 is fastest, 9 is slowest
 
