@@ -10,5 +10,12 @@ $ pathfinding/bin/pathfinding
 
 Tested on Ruby 1.9.3-p194 on Mac OSX Lion.
 
+## Usage
+When launched, pathfinding will automatically place a character and a dragon, and begin to visually show the path being drawn found from the character to the dragon.
+
+Aditionally, these controls are available:
+* Press `p` to pause the pathfinding
+* Press `r` to reset with new random locations
+
 ## Attribution
 All the graphic tiles used in this program is the Public domain roguelike tileset "RLTiles". You can find the original tileset at: http://rltiles.sf.net You can find Dungeon Crawl Stone Soup modified tilesets at: http://code.google.com/p/crawl-tiles/downloads/list
