@@ -1,5 +1,5 @@
 class Pather
-  attr_accessor :finished
+  attr_accessor :finished, :path
   
   def initialize(map, start, finish, tileset)
     @map = map
@@ -10,6 +10,7 @@ class Pather
     @closed = []
     @current = nil
     @finished = false
+    @path = []
   end
 
   def step
@@ -17,6 +18,10 @@ class Pather
     @current = @open.pop
     @closed.push(@current)
     if @current == @finish
+      @path.unshift @current
+      while (@current = @current.parent)
+        @path.unshift @current
+      end
       @finished = true
       return
     end
@@ -56,11 +61,7 @@ class Pather
     @closed.each { |n| @tileset.draw(2717, n.x, n.y, 2) }
     @tileset.draw(10, @current.x, @current.y, 4) if @current
     if @finished
-      n = @closed.last
-      @tileset.draw(2719, n.x, n.y, 3) if n
-      while (n = n.parent)
-        @tileset.draw(2719, n.x, n.y, 3) if n
-      end
+      @path.each { |n| @tileset.draw(2719, n.x, n.y, 3) }
     end
   end
 
