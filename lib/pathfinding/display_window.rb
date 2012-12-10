@@ -34,4 +34,10 @@ class DisplayWindow < Gosu::Window
     @units.map(&:draw)
     @pather.draw
   end
+
+  def button_down(id)
+    if id == Gosu::Window.char_to_button_id("r")
+      reset
+    end
+  end
 end
