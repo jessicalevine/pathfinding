@@ -7,6 +7,7 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 require "pathfinding/tileset"
 require "pathfinding/unit"
+require "pathfinding/location"
 require "pathfinding/map"
 require "pathfinding/display_window"
 
