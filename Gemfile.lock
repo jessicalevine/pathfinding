@@ -1,12 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    algorithms (0.5.0)
     gosu (0.7.45)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  algorithms
   gosu
