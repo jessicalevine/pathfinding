@@ -22,8 +22,8 @@ class DisplayWindow < Gosu::Window
   
   def reset
     @map = Map.from_file(@map_names.first, @tileset)
-    @map.units = [ Unit.new("D", @map.rand_walkable_loc, 4, @tileset), 
-               Unit.new("A", @map.rand_walkable_loc, 4, @tileset) ]
+    @map.units = [ Unit.new("D", @map.rand_walkable_loc, 4, @tileset, @map), 
+               Unit.new("A", @map.rand_walkable_loc, 4, @tileset, @map) ]
     @pather = Pather.new(@map, @map.units.first.loc, @map.units.last.loc, @tileset, @disp_scores)
   end
 

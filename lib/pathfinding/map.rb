@@ -44,6 +44,20 @@ class Map
     end
   end
 
+  def unit? loc
+    @units.each do |u|
+      return true if u.loc == loc
+    end
+    return false
+  end
+
+  def get_unit loc
+    @units.each do |u|
+      return u if u.loc == loc
+    end
+    return nil
+  end
+
   def rand_walkable_loc
     loc = Location.new(rand(width), rand(height))
     while !walkable?(loc)

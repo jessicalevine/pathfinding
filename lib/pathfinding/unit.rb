@@ -1,11 +1,12 @@
 class Unit
-  attr_accessor :loc
+  attr_accessor :loc, :dead
 
-  def initialize(tile, loc, z, tileset, path = nil)
+  def initialize(tile, loc, z, tileset, map, path = nil)
     @tile = tile
     @loc = loc
     @z = z
     @tileset = tileset
+    @map = map
     @path = nil
     @walking = false
     @dead = nil
@@ -25,7 +26,7 @@ class Unit
     raise "Please set a path to walk!" if @path.nil?
     if @step_num >= @path.length - 1
       @walking = false
-      @dead = true
+      @map.get_unit(@path.last).dead = true
     else
       warp @path[@step_num]
       @step_num += 1
@@ -42,7 +43,10 @@ class Unit
   end
 
   def draw
-    @tileset.draw(@tile, @loc.x, @loc.y, @z)
-    @tileset.draw(3, @path.last.x, @path.last.y, 6) if @dead
+    if !@dead
+      @tileset.draw(@tile, @loc.x, @loc.y, @z)
+    else
+      @tileset.draw(3, @loc.x, @loc.y, @z)
+    end
   end
 end
