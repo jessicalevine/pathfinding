@@ -1,7 +1,7 @@
 class DisplayWindow < Gosu::Window
   WIDTH = HEIGHT = 640 
   TILESIZE = 32
-  UPDATE_FRAME = 30
+  @update_frame = 30
 
   def initialize
     super(WIDTH, HEIGHT, false)
@@ -11,6 +11,7 @@ class DisplayWindow < Gosu::Window
     @tileset = Tileset.new(self, "assets/dungeon_crawl_tiles.png", TILESIZE, TILESIZE, key)
 
     @counter = 0
+    @update_frame = 9
     @paused = false
 
     reset
@@ -26,7 +27,7 @@ class DisplayWindow < Gosu::Window
   def update
     if !@paused
       @counter += 1
-      if @counter >= UPDATE_FRAME
+      if @counter >= @update_frame
         @pather.step if !@pather.finished
         @counter = 0
       end
@@ -44,6 +45,14 @@ class DisplayWindow < Gosu::Window
       reset
     elsif id == Gosu::Window.char_to_button_id("p")
       @paused = !@paused
-    end
+    else
+      # On numbers 1 through 9, set update frame to n^2
+      # therfore adusting the speed of the animation
+      (1..9).each do |n|
+        if id == Gosu::Window.char_to_button_id(n.to_s)
+          @update_frame = n ** 2
+        end
+      end # (1..9).each
+    end # else
   end
 end

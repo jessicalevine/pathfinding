@@ -16,6 +16,8 @@ When launched, pathfinding will automatically place a character and a dragon, an
 Aditionally, these controls are available:
 * Press `p` to pause the pathfinding
 * Press `r` to reset with new random locations
+* Press `1` through `9` to adjust the animation speed
+  * 1 is fastest, 9 is slowest
 
 ## Attribution
 All the graphic tiles used in this program is the Public domain roguelike tileset "RLTiles". You can find the original tileset at: http://rltiles.sf.net You can find Dungeon Crawl Stone Soup modified tilesets at: http://code.google.com/p/crawl-tiles/downloads/list
