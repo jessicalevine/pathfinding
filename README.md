@@ -11,12 +11,12 @@ $ pathfinding/bin/pathfinding
 Tested on Ruby 1.9.3-p194 on Mac OSX Lion.
 
 ## Usage
-When launched, pathfinding will automatically place a character and a dragon, and begin to visually show the path being drawn found from the character to the dragon.
+When launched, pathfinding will automatically place a character and a dragon, and begin to visually show the path being drawn found from the dragon to the character.
 
 Aditionally, these controls are available:
 * Press `p` to pause the pathfinding
 * Press `r` to reset with new random locations
-* Press `w` to walk the adventurer along a finalized (golden) path
+* Press `w` to walk the dragon along a finalized (golden) path
 * Press `1` through `9` to adjust the animation speed
   * 1 is fastest, 9 is slowest
 
