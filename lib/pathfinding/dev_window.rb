@@ -11,6 +11,7 @@ class DevWindow < Gosu::Window
 
     @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
     @map = Map.from_file("assets/maps/example20square", @tileset)
+    @code = nil
     # test_neighbours
     # test_path
   end
@@ -33,6 +34,11 @@ class DevWindow < Gosu::Window
   def draw
     @tileset.draw(@tile, WIDTH / TILESIZE / 2, HEIGHT / TILESIZE / 2, 0)
     @font.draw("Tile: #{@tile}", 10, 10, 1, 1.0, 1.0, 0xffffff00)
+    @font.draw("Character Code: #{@code}", 10, 30, 1, 1.0, 1.0, 0xffffff00)
+  end
+
+  def button_down(id)
+    @code = id
   end
 
   def test_neighbours
