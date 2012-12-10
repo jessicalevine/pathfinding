@@ -52,24 +52,6 @@ class Map
     loc
   end
 
-  # def path(start, finish)
-  #   open = []
-  #   closed = []
-  #   open.push Location.new(start.x, start.y, 0, manhattan(start, finish), nil)
-
-  #   current = nil
-  #   while (current = open.pop)
-  #   end # while
-
-  #   #.push each parent to the beginning of the path
-  #   path = [current]
-  #   while (current = current.parent)
-  #     path.unshift(current) 
-  #   end
-
-  #   path 
-  # end
-
   def neighbours n
     ret = []
     x = y = -1
