@@ -1,6 +1,6 @@
 class Map
   def self.from_file(filepath, tileset)
-    file = File.new(File.expand_path(filepath))
+    file = File.new(File.expand_path("assets/maps/#{filepath}"))
     map_array = []
     while (line = file.gets)
       row = []
