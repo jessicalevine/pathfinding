@@ -16,4 +16,8 @@ class Location
   def ==(other)
     x == other.x && y == other.y
   end
+
+  def diagonal?(other)
+    (@x - other.x) != 0 && (@y - other.y) != 0
+  end
 end

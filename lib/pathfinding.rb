@@ -9,6 +9,7 @@ require "pathfinding/tileset"
 require "pathfinding/unit"
 require "pathfinding/location"
 require "pathfinding/map"
+require "pathfinding/pather"
 require "pathfinding/display_window"
 
 if ARGV.include? "-d"

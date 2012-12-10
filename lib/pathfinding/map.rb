@@ -49,48 +49,23 @@ class Map
     loc
   end
 
-  def path(start, finish)
-    open = []
-    closed = []
-    open.push Location.new(start.x, start.y, 0, manhattan(start, finish), nil)
+  # def path(start, finish)
+  #   open = []
+  #   closed = []
+  #   open.push Location.new(start.x, start.y, 0, manhattan(start, finish), nil)
 
-    current = nil
-    while (current = open.pop)
-      closed.push(current)
-      break if current == finish
+  #   current = nil
+  #   while (current = open.pop)
+  #   end # while
 
-      neighbours(current).each do |n|
-        next if !walkable?(n) || closed.include?(n) # Skip unwalkable or walked tiles
+  #   #.push each parent to the beginning of the path
+  #   path = [current]
+  #   while (current = current.parent)
+  #     path.unshift(current) 
+  #   end
 
-        # Set G and H scores, as well as parent
-        n.dist = current.dist + 10
-        n.est = manhattan(n, finish)
-        n.parent = current
-
-        #.push to or update open list
-        if open.include? n
-          # Check if new distance to location n is shorter than existing
-          # distance to location. If so, replace it with new location.
-          if n.dist < open.fetch(open.index(n)).dist
-            open.delete(n)
-            open.push(n)
-          end
-        else
-          open.push(n)
-        end
-      end # neighbours.each
-
-      open.sort!{|a, b| b.score <=> a.score} # Resort open list by heuristic score
-    end # while
-
-    #.push each parent to the beginning of the path
-    path = [current]
-    while (current = current.parent)
-      path.unshift(current) 
-    end
-
-    path 
-  end
+  #   path 
+  # end
 
   def neighbours n
     ret = []
@@ -118,11 +93,5 @@ class Map
 
   def walkable?(n)
     @tiles[n.y][n.x] == "F"
-  end
-
-  private
-
-  def manhattan(current, finish)
-    (current.x - finish.x).abs + (current.y + finish.y).abs
   end
 end
