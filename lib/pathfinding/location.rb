@@ -1,5 +1,6 @@
 class Location
   attr_accessor :x, :y, :dist, :est, :parent
+
   def initialize(x, y, dist = nil, est = nil, parent = nil)
     @x = x
     @y = y
@@ -9,6 +10,10 @@ class Location
   end
 
   def score
-    return @dist + @est
+    @dist + @est
+  end
+
+  def ==(other)
+    x == other.x && y == other.y
   end
 end
