@@ -12,6 +12,7 @@ class DisplayWindow < Gosu::Window
 
     @map_names = [ "example20square", "20squaremorewalls", "lotsofwalls" ]
 
+    @mode = :frame
     @counter = 0
     @update_frame = 9
     @paused = false
@@ -28,15 +29,20 @@ class DisplayWindow < Gosu::Window
   end
 
   def update
-    if !@paused
-      @counter += 1
-      if @counter >= @update_frame
-        @pather.step if !@pather.finished
-        @map.units.each do |u|
-          u.step if u.walking?
+    if @mode == :frame
+      if !@paused
+        @counter += 1
+        if @counter >= @update_frame
+          @pather.step if !@pather.finished
+          @map.units.each do |u|
+            u.step if u.walking?
+          end
+          @counter = 0
         end
-        @counter = 0
       end
+    elsif @mode == :step
+      @pather.step if @need_to_step
+      @need_to_step = false
     end
   end
   
@@ -56,6 +62,13 @@ class DisplayWindow < Gosu::Window
     elsif id == Gosu::Window.char_to_button_id("d")
       @disp_scores = !@disp_scores
       @pather.disp_scores = @disp_scores
+    elsif id == Gosu::Window.char_to_button_id("f")
+      @mode = :frame
+    elsif id == Gosu::Window.char_to_button_id("z")
+      @mode = :step
+      @need_to_step = false
+    elsif id == Gosu::Window.char_to_button_id("s")
+      @need_to_step = true
     elsif id == Gosu::Window.char_to_button_id("m")
       @map_names.unshift(@map_names.pop)
       reset
