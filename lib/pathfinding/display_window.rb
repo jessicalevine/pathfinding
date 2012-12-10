@@ -22,9 +22,9 @@ class DisplayWindow < Gosu::Window
   
   def reset
     @map = Map.from_file(@map_names.first, @tileset)
-    @units = [ Unit.new("D", @map.rand_walkable_loc, 4, @tileset), 
+    @map.units = [ Unit.new("D", @map.rand_walkable_loc, 4, @tileset), 
                Unit.new("A", @map.rand_walkable_loc, 4, @tileset) ]
-    @pather = Pather.new(@map, @units.first.loc, @units.last.loc, @tileset, @disp_scores)
+    @pather = Pather.new(@map, @map.units.first.loc, @map.units.last.loc, @tileset, @disp_scores)
   end
 
   def update
@@ -32,7 +32,7 @@ class DisplayWindow < Gosu::Window
       @counter += 1
       if @counter >= @update_frame
         @pather.step if !@pather.finished
-        @units.each do |u|
+        @map.units.each do |u|
           u.step if u.walking?
         end
         @counter = 0
@@ -42,7 +42,7 @@ class DisplayWindow < Gosu::Window
   
   def draw
     @map.draw
-    @units.map(&:draw)
+    @map.units.map(&:draw)
     @pather.draw
   end
 
@@ -52,7 +52,7 @@ class DisplayWindow < Gosu::Window
     elsif id == Gosu::Window.char_to_button_id("p")
       @paused = !@paused
     elsif id == Gosu::Window.char_to_button_id("w")
-      @units.first.walk(@pather.path) if @pather.finished
+      @map.units.first.walk(@pather.path) if @pather.finished
     elsif id == Gosu::Window.char_to_button_id("d")
       @disp_scores = !@disp_scores
       @pather.disp_scores = @disp_scores

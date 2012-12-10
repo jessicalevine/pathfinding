@@ -1,4 +1,6 @@
 class Map
+  attr_accessor :units
+
   def self.from_file(filepath, tileset)
     file = File.new(File.expand_path("assets/maps/#{filepath}"))
     map_array = []
@@ -15,6 +17,7 @@ class Map
   def initialize(tiles, tileset)
     @tiles = tiles
     @tileset = tileset
+    @units = []
   end
 
   def get(x, y)
