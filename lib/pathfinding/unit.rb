@@ -8,7 +8,7 @@ class Unit
     @tileset = tileset
     @path = nil
     @walking = false
-    @death = nil
+    @dead = nil
   end
 
   def walk(path)
@@ -25,7 +25,7 @@ class Unit
     raise "Please set a path to walk!" if @path.nil?
     if @step_num >= @path.length - 1
       @walking = false
-      @death = true
+      @dead = true
     else
       warp @path[@step_num]
       @step_num += 1
@@ -42,10 +42,7 @@ class Unit
   end
 
   def draw
-    if !@death
-      @tileset.draw(@tile, @loc.x, @loc.y, @z)
-    else
-      @tileset.draw(3, @path.last.x, @path.last.y, 6)
-    end
+    @tileset.draw(@tile, @loc.x, @loc.y, @z)
+    @tileset.draw(3, @path.last.x, @path.last.y, 6) if @dead
   end
 end
