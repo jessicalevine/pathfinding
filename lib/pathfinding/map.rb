@@ -18,11 +18,11 @@ class Map
   end
 
   def get(x, y)
-    return @tiles[x][y]
+    return @tiles[y][x]
   end
 
   def set(tile, x, y)
-    @tiles[x][y] = tile
+    @tiles[y][x] = tile
   end
 
   def draw
