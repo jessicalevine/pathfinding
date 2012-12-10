@@ -11,6 +11,7 @@ class Tileset
   end
 
   def draw(n, x, y, z)
+    puts "here" if n == 5
     if @key.keys.include? n
       n = @key[n]
     end

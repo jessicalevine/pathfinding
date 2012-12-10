@@ -10,6 +10,9 @@ class DevWindow < Gosu::Window
     @tile = 0
 
     @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
+    @map = Map.from_file("assets/maps/example20square", @tileset)
+    # test_neighbours
+    # test_path
   end
   
   def update
@@ -30,5 +33,25 @@ class DevWindow < Gosu::Window
   def draw
     @tileset.draw(@tile, WIDTH / TILESIZE / 2, HEIGHT / TILESIZE / 2, 0)
     @font.draw("Tile: #{@tile}", 10, 10, 1, 1.0, 1.0, 0xffffff00)
+  end
+
+  def test_neighbours
+    (0...(HEIGHT / TILESIZE)).each do |x|
+      (0...(WIDTH / TILESIZE)).each do |y|
+        puts "(#{x}, #{y})"
+        print "[ "
+        @map.neighbours(Location.new(x, y)).each do |n|
+          print "(#{n.x}, #{n.y}) "
+        end
+        puts "]"
+      end
+    end
+  end
+
+  def test_path
+    @map.path(Location.new(1, 1), Location.new(10, 5)).each do |n|
+    puts "PATH"
+      print "(#{n.x}, #{n.y}) "
+    end
   end
 end

@@ -10,8 +10,9 @@ class DisplayWindow < Gosu::Window
     @tileset = Tileset.new(self, "assets/dungeon_crawl_tiles.png", TILESIZE, TILESIZE, key)
 
     @map = Map.from_file("assets/maps/example20square", @tileset)
-    @units = [ Unit.new("A", rand(WIDTH / TILESIZE), rand(HEIGHT / TILESIZE), 1, @tileset), 
-               Unit.new("D", rand(WIDTH / TILESIZE), rand(HEIGHT / TILESIZE), 1, @tileset) ]
+    @units = [ Unit.new("A", @map.rand_walkable_loc, 1, @tileset), 
+               Unit.new("D", @map.rand_walkable_loc, 1, @tileset) ]
+    @path = @map.path(@units.first.loc, @units.last.loc)
   end
   
   def update
@@ -20,5 +21,6 @@ class DisplayWindow < Gosu::Window
   def draw
     @map.draw
     @units.map(&:draw)
+    @path.each { |loc| @tileset.draw(2, loc.x, loc.y, 1) }
   end
 end

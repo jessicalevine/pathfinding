@@ -1,24 +1,24 @@
 class Unit
-  def initialize(tile, x, y, z, tileset)
+  attr_accessor :loc
+
+  def initialize(tile, loc, z, tileset)
     @tile = tile
-    @x = y
-    @y = y
+    @loc = loc
     @z = z
     @tileset = tileset
-    puts "#{tile} (#{x}, #{y})"
   end
 
   def warp(x, y)
-    @x = x
-    @y = y
+    @loc.x = x
+    @loc.y = y
   end
 
   def move(x, y)
-    @x += x
-    @y += y
+    @loc.x += x
+    @loc.y += y
   end
 
   def draw
-    @tileset.draw(@tile, @x, @y, @z)
+    @tileset.draw(@tile, @loc.x, @loc.y, @z)
   end
 end
