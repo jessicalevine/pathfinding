@@ -29,6 +29,9 @@ class DisplayWindow < Gosu::Window
       @counter += 1
       if @counter >= @update_frame
         @pather.step if !@pather.finished
+        @units.each do |u|
+          u.step if u.walking?
+        end
         @counter = 0
       end
     end
@@ -45,6 +48,8 @@ class DisplayWindow < Gosu::Window
       reset
     elsif id == Gosu::Window.char_to_button_id("p")
       @paused = !@paused
+    elsif id == Gosu::Window.char_to_button_id("w")
+      @units.first.walk(@pather.path) if @pather.finished
     else
       # On numbers 1 through 9, set update frame to n^2
       # therfore adusting the speed of the animation

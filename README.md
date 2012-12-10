@@ -16,6 +16,7 @@ When launched, pathfinding will automatically place a character and a dragon, an
 Aditionally, these controls are available:
 * Press `p` to pause the pathfinding
 * Press `r` to reset with new random locations
+* Press `w` to walk the adventurer along a finalized (golden) path
 * Press `1` through `9` to adjust the animation speed
   * 1 is fastest, 9 is slowest
 
