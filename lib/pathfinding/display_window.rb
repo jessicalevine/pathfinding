@@ -9,7 +9,9 @@ class DisplayWindow < Gosu::Window
 
     key = { "A" => 132, "D" => 193, "W" => 1142, "F" => 1156 }
     @tileset = Tileset.new(self, "assets/dungeon_crawl_tiles.png", TILESIZE, TILESIZE, key)
+
     @counter = 0
+    @paused = false
 
     reset
   end
@@ -22,10 +24,12 @@ class DisplayWindow < Gosu::Window
   end
 
   def update
-    @counter += 1
-    if @counter >= UPDATE_FRAME
-      @pather.step if !@pather.finished
-      @counter = 0
+    if !@paused
+      @counter += 1
+      if @counter >= UPDATE_FRAME
+        @pather.step if !@pather.finished
+        @counter = 0
+      end
     end
   end
   
@@ -38,6 +42,8 @@ class DisplayWindow < Gosu::Window
   def button_down(id)
     if id == Gosu::Window.char_to_button_id("r")
       reset
+    elsif id == Gosu::Window.char_to_button_id("p")
+      @paused = !@paused
     end
   end
 end
